@@ -57,6 +57,9 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     @Shadow
     protected abstract void worldChanged(ServerWorld origin);
 
+    @Shadow
+    public abstract void setWorld(ServerWorld world);
+
     public ServerPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile profile) {
         super(world, pos, yaw, profile);
     }
@@ -76,8 +79,8 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
             this.networkHandler.sendPacket(new DifficultyS2CPacket(worldProperties.getDifficulty(), worldProperties.isDifficultyLocked()));
             PlayerManager playerManager = this.server.getPlayerManager();
             playerManager.sendCommandTree((ServerPlayerEntity)(Object)this);
-            serverWorld.removePlayer((ServerPlayerEntity)(Object)this);
-            this.removed = false;
+            serverWorld.removePlayer((ServerPlayerEntity)(Object)this, RemovalReason.CHANGED_DIMENSION);
+            this.unsetRemoved();
             TeleportTarget teleportTarget = this.getTeleportTarget(destination);
             if (teleportTarget != null) {
                 serverWorld.getProfiler().push("moving");
@@ -90,14 +93,14 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
                 serverWorld.getProfiler().pop();
                 this.worldChanged(serverWorld);
                 this.interactionManager.setWorld(destination);
-                this.networkHandler.sendPacket(new PlayerAbilitiesS2CPacket(this.abilities));
+                this.networkHandler.sendPacket(new PlayerAbilitiesS2CPacket(this.getAbilities()));
                 playerManager.sendWorldInfo((ServerPlayerEntity)(Object)this, destination);
                 playerManager.sendPlayerStatus((ServerPlayerEntity)(Object)this);
                 Iterator<StatusEffectInstance> var7 = this.getStatusEffects().iterator();
 
                 while(var7.hasNext()) {
                     StatusEffectInstance statusEffectInstance = (StatusEffectInstance)var7.next();
-                    this.networkHandler.sendPacket(new EntityStatusEffectS2CPacket(this.getEntityId(), statusEffectInstance));
+                    this.networkHandler.sendPacket(new EntityStatusEffectS2CPacket(this.getId(), statusEffectInstance));
                 }
 
                 this.networkHandler.sendPacket(new WorldEventS2CPacket(1032, BlockPos.ORIGIN, 0, false));

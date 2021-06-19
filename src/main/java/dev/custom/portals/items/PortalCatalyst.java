@@ -116,7 +116,7 @@ public class PortalCatalyst extends Item {
                 return invalid;
             curPos = curPos.north();
         }
-        if(!world.getBlockState(curPos.up()).getBlock().is(frameMaterial))
+        if(world.getBlockState(curPos.up()).getBlock() != frameMaterial)
             return invalid;
         for(int i = 0; world.getBlockState(curPos.down()).isAir(); i++) {
             if(i > 23 || !world.getBlockState(curPos.north()).isOf(frameMaterial))
@@ -224,7 +224,7 @@ public class PortalCatalyst extends Item {
             Pair<Integer, Integer> dimensions = getDimensions(world, ns.getRight(), Direction.Axis.Z);
             BlockPos center = ns.getRight().east(dimensions.getLeft()/2);
             Portal portal = new Portal(world.getBlockState(ns.getRight().down()).getBlock().getTranslationKey(), 
-            world.getRegistryKey().getValue().toString(), portalBlock.getDefaultMaterialColor(), 
+            world.getRegistryKey().getValue().toString(), portalBlock.getDefaultMapColor(), 
             center, portalBlocks, dimensions.getLeft(), dimensions.getRight());
             CustomPortals.PORTALS.get(world).registerPortal(portal);
             if(!world.isClient)
@@ -247,7 +247,7 @@ public class PortalCatalyst extends Item {
             Pair<Integer, Integer> dimensions = getDimensions(world, ew.getRight(), Direction.Axis.X);
             BlockPos center = ew.getRight().north(dimensions.getRight()/2 - 1);
             Portal portal = new Portal(world.getBlockState(ew.getRight().down()).getBlock().getTranslationKey(), 
-                world.getRegistryKey().getValue().toString(), portalBlock.getDefaultMaterialColor(), 
+                world.getRegistryKey().getValue().toString(), portalBlock.getDefaultMapColor(), 
                 center, portalBlocks, dimensions.getLeft(), dimensions.getRight());
             CustomPortals.PORTALS.get(world).registerPortal(portal);
             if(!world.isClient)
@@ -270,7 +270,7 @@ public class PortalCatalyst extends Item {
             Pair<Integer, Integer> dimensions = getDimensions(world, ud.getRight(), Direction.Axis.Y);
             BlockPos center = ud.getRight().east(dimensions.getLeft()/2).north(dimensions.getRight()/2 - 1);
             Portal portal = new Portal(world.getBlockState(ud.getRight().south()).getBlock().getTranslationKey(), 
-            world.getRegistryKey().getValue().toString(), portalBlock.getDefaultMaterialColor(), 
+            world.getRegistryKey().getValue().toString(), portalBlock.getDefaultMapColor(), 
             center, portalBlocks, dimensions.getLeft(), dimensions.getRight());
             CustomPortals.PORTALS.get(world).registerPortal(portal);
             if(!world.isClient)

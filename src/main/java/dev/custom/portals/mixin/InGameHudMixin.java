@@ -1,5 +1,6 @@
 package dev.custom.portals.mixin;
 
+import net.minecraft.client.render.VertexFormat;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,43 +39,26 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Inject(method = "renderPortalOverlay", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/texture/Sprite;getMinU()F"), locals = LocalCapture.CAPTURE_FAILSOFT, cancellable = true)
     private void renderPortalOverlay(float f, CallbackInfo ci, Sprite sprite) {
         int color = ((EntityMixinAccess)this.client.player).getPortalColor();
-        if(color != 0) {
-            Block spriteModel;
-            switch(color) {
-                case 29: spriteModel = CustomPortals.BLACK_PORTAL;
-                break;
-                case 25: spriteModel = CustomPortals.BLUE_PORTAL;
-                break;
-                case 26: spriteModel = CustomPortals.BROWN_PORTAL;
-                break;
-                case 23: spriteModel = CustomPortals.CYAN_PORTAL;
-                break;
-                case 21: spriteModel = CustomPortals.GRAY_PORTAL;
-                break;
-                case 27: spriteModel = CustomPortals.GREEN_PORTAL;
-                break;
-                case 17: spriteModel = CustomPortals.LIGHT_BLUE_PORTAL;
-                break;
-                case 22: spriteModel = CustomPortals.LIGHT_GRAY_PORTAL;
-                break;
-                case 19: spriteModel = CustomPortals.LIME_PORTAL;
-                break;
-                case 16: spriteModel = CustomPortals.MAGENTA_PORTAL;
-                break;
-                case 15: spriteModel = CustomPortals.ORANGE_PORTAL;
-                break;
-                case 20: spriteModel = CustomPortals.PINK_PORTAL;
-                break;
-                case 24: spriteModel = CustomPortals.PURPLE_PORTAL;
-                break;
-                case 28: spriteModel = CustomPortals.RED_PORTAL;
-                break;
-                case 8: spriteModel = CustomPortals.WHITE_PORTAL;
-                break;
-                case 18: spriteModel = CustomPortals.YELLOW_PORTAL;
-                break;
-                default: spriteModel = Blocks.NETHER_PORTAL;
-            }
+        if (color != 0) {
+            Block spriteModel = switch (color) {
+                case 29 -> CustomPortals.BLACK_PORTAL;
+                case 25 -> CustomPortals.BLUE_PORTAL;
+                case 26 -> CustomPortals.BROWN_PORTAL;
+                case 23 -> CustomPortals.CYAN_PORTAL;
+                case 21 -> CustomPortals.GRAY_PORTAL;
+                case 27 -> CustomPortals.GREEN_PORTAL;
+                case 17 -> CustomPortals.LIGHT_BLUE_PORTAL;
+                case 22 -> CustomPortals.LIGHT_GRAY_PORTAL;
+                case 19 -> CustomPortals.LIME_PORTAL;
+                case 16 -> CustomPortals.MAGENTA_PORTAL;
+                case 15 -> CustomPortals.ORANGE_PORTAL;
+                case 20 -> CustomPortals.PINK_PORTAL;
+                case 24 -> CustomPortals.PURPLE_PORTAL;
+                case 28 -> CustomPortals.RED_PORTAL;
+                case 8 -> CustomPortals.WHITE_PORTAL;
+                case 18 -> CustomPortals.YELLOW_PORTAL;
+                default -> Blocks.NETHER_PORTAL;
+            };
             sprite = this.client.getBlockRenderManager().getModels().getSprite(spriteModel.getDefaultState());
             float g = sprite.getMinU();
             float h = sprite.getMinV();
@@ -82,7 +66,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
             float j = sprite.getMaxV();
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder bufferBuilder = tessellator.getBuffer();
-            bufferBuilder.begin(7, VertexFormats.POSITION_TEXTURE);
+            bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
             bufferBuilder.vertex(0.0D, (double)this.scaledHeight, -90.0D).texture(g, j).next();
             bufferBuilder.vertex((double)this.scaledWidth, (double)this.scaledHeight, -90.0D).texture(i, j).next();
             bufferBuilder.vertex((double)this.scaledWidth, 0.0D, -90.0D).texture(i, h).next();
@@ -90,8 +74,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
             tessellator.draw();
             RenderSystem.depthMask(true);
             RenderSystem.enableDepthTest();
-            RenderSystem.enableAlphaTest();
-            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             ci.cancel();
         }
     }

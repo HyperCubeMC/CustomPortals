@@ -18,7 +18,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -73,7 +73,7 @@ public class PortalBlock extends Block {
             }
   
             if (world.getBlockState(pos).allowsSpawning(world, pos, EntityType.ZOMBIFIED_PIGLIN)) {
-               Entity entity = EntityType.ZOMBIFIED_PIGLIN.spawn(world, (CompoundTag)null, (Text)null, (PlayerEntity)null, pos.up(), SpawnReason.STRUCTURE, false, false);
+               Entity entity = EntityType.ZOMBIFIED_PIGLIN.spawn(world, (NbtCompound)null, (Text)null, (PlayerEntity)null, pos.up(), SpawnReason.STRUCTURE, false, false);
                if (entity != null) {
                   entity.resetNetherPortalCooldown();
                }
@@ -85,7 +85,7 @@ public class PortalBlock extends Block {
             }
   
             if (world.getBlockState(pos).allowsSpawning(world, pos, EntityType.ENDERMAN)) {
-               Entity entity = EntityType.ENDERMAN.spawn(world, (CompoundTag)null, (Text)null, (PlayerEntity)null, pos.up(), SpawnReason.STRUCTURE, false, false);
+               Entity entity = EntityType.ENDERMAN.spawn(world, (NbtCompound)null, (Text)null, (PlayerEntity)null, pos.up(), SpawnReason.STRUCTURE, false, false);
                if (entity != null) {
                   entity.resetNetherPortalCooldown();
                }
@@ -108,7 +108,7 @@ public class PortalBlock extends Block {
 
    private void dropCatalyst(Portal portal, World world) {
       Item catalyst;
-      switch(this.getDefaultMaterialColor().id) {
+      switch(this.getDefaultMapColor().id) {
          case 29: catalyst = CustomPortals.BLACK_PORTAL_CATALYST;
          break;
          case 25: catalyst = CustomPortals.BLUE_PORTAL_CATALYST;
@@ -205,7 +205,7 @@ public class PortalBlock extends Block {
             f = (double)pos.getZ() + 0.5D + 0.25D * (double)k;
             j = (double)(random.nextFloat() * 2.0F * (float)k);
          }
-         switch(this.getDefaultMaterialColor().id) {
+         switch(this.getDefaultMapColor().id) {
             case 29: world.addParticle(CustomPortals.BLACK_PORTAL_PARTICLE, d, e, f, g, h, j);
             break;
             case 25: world.addParticle(CustomPortals.BLUE_PORTAL_PARTICLE, d, e, f, g, h, j);

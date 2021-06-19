@@ -1,5 +1,20 @@
 package dev.custom.portals;
 
+import dev.custom.portals.CustomPortals.BlackPortalParticle;
+import dev.custom.portals.CustomPortals.BluePortalParticle;
+import dev.custom.portals.CustomPortals.BrownPortalParticle;
+import dev.custom.portals.CustomPortals.CyanPortalParticle;
+import dev.custom.portals.CustomPortals.GrayPortalParticle;
+import dev.custom.portals.CustomPortals.GreenPortalParticle;
+import dev.custom.portals.CustomPortals.LightBluePortalParticle;
+import dev.custom.portals.CustomPortals.LightGrayPortalParticle;
+import dev.custom.portals.CustomPortals.LimePortalParticle;
+import dev.custom.portals.CustomPortals.MagentaPortalParticle;
+import dev.custom.portals.CustomPortals.OrangePortalParticle;
+import dev.custom.portals.CustomPortals.PinkPortalParticle;
+import dev.custom.portals.CustomPortals.RedPortalParticle;
+import dev.custom.portals.CustomPortals.WhitePortalParticle;
+import dev.custom.portals.CustomPortals.YellowPortalParticle;
 import dev.custom.portals.blocks.PortalBlock;
 import dev.custom.portals.data.BasePortalComponent;
 import dev.custom.portals.data.WorldPortals;
@@ -19,8 +34,8 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.MapColor;
 import net.minecraft.block.Material;
-import net.minecraft.block.MaterialColor;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.PortalParticle;
@@ -62,82 +77,82 @@ public class CustomPortals implements ModInitializer, ClientModInitializer, Worl
         public static final DefaultParticleType YELLOW_PORTAL_PARTICLE = FabricParticleTypes.simple();
 
         public static final Block BLACK_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.BLACK).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.BLACK).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block BLUE_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.BLUE).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.BLUE).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block BROWN_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.BROWN).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.BROWN).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block CYAN_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.CYAN).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.CYAN).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block GRAY_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.GRAY).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.GRAY).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block GREEN_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.GREEN).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.GREEN).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block LIGHT_BLUE_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.LIGHT_BLUE).nonOpaque().noCollision()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.LIGHT_BLUE).nonOpaque().noCollision()
                         .ticksRandomly().strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block LIGHT_GRAY_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.LIGHT_GRAY).nonOpaque().noCollision()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.LIGHT_GRAY).nonOpaque().noCollision()
                         .ticksRandomly().strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block LIME_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.LIME).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.LIME).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block MAGENTA_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.MAGENTA).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.MAGENTA).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block ORANGE_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.ORANGE).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.ORANGE).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block PINK_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.PINK).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.PINK).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block PURPLE_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.PURPLE).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.PURPLE).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block RED_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.RED).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.RED).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block WHITE_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.WHITE).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.WHITE).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));
         public static final Block YELLOW_PORTAL = new PortalBlock(
-                AbstractBlock.Settings.of(Material.PORTAL, MaterialColor.YELLOW).nonOpaque().noCollision().ticksRandomly()
+                AbstractBlock.Settings.of(Material.PORTAL, MapColor.YELLOW).nonOpaque().noCollision().ticksRandomly()
                         .strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
                                 return 11;
                         }));

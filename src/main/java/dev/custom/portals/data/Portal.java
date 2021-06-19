@@ -1,8 +1,7 @@
 package dev.custom.portals.data;
 
 import java.util.List;
-
-import net.minecraft.block.MaterialColor;
+import net.minecraft.block.MapColor;
 import net.minecraft.util.math.BlockPos;
 
 public class Portal {
@@ -11,13 +10,13 @@ public class Portal {
     public final int width;
     private final String frameId;
     private final String dimensionId;
-    private final MaterialColor color;
+    private final MapColor color;
     private final BlockPos spawnPos;
     private final List<BlockPos> portalBlocks;
     
     private Portal linked;
 
-    public Portal(final String frameId, final String dimensionId, final MaterialColor color, final BlockPos spawnPos,
+    public Portal(final String frameId, final String dimensionId, final MapColor color, final BlockPos spawnPos,
             final List<BlockPos> portalBlocks, final int length, final int width) {
         this.frameId = frameId;
         this.dimensionId = dimensionId;
@@ -36,7 +35,7 @@ public class Portal {
         return dimensionId;
     }
 
-    public MaterialColor getColor() {
+    public MapColor getColor() {
         return color;
     }
 
